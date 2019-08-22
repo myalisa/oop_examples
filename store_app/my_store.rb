@@ -1,16 +1,30 @@
 class Item
-  attr_reader :name, :color, :price, :stocked
-  attr_writer :stocked
+  attr_reader :name, :color, :price
+  
 
   def initialize(input_options)
     @name = input_options[:name]
     @color = input_options[:color]
     @price = input_options[:price]
-    @stocked = input_options[:stocked]
+  
   end
 
   def print_info
-    puts "#{name} is #{color} and costs #{price}"
+    puts "#{name} is #{color} and costs $#{price}."
+  end
+
+end
+
+class Food < Item
+  attr_reader :shelf_life
+  def initialize(input_options)
+    @shelf_life = input_options[:shelf_life]
+    super(input_options)
+  end
+
+  def print_info
+    super
+    puts "...and it lasts for #{shelf_life}"
   end
 
 end
@@ -30,14 +44,17 @@ item_2 = Item.new(
                     stocked: true
                   )
 
-item_3 = Item.new(
+item_3 = Food.new(
                     name:"cherries",
                     color: "red",
                     price: 3,
-                    stocked: false
+                    stocked: false,
+                    shelf_life: "1 week"
                   )
 
 
 
-p item_1.print_info
+
+
+item_3.print_info
 
