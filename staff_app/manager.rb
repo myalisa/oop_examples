@@ -36,6 +36,11 @@ class Manager < Employee
     end
   end
 
+  def fire_all_employees
+    @employees.each { |employee| employee.active = false }
+    end
+  end
+
 
 
   def send_report
@@ -43,7 +48,7 @@ class Manager < Employee
     # code to send email
     puts "Email sent"
   end
-end
+
 
 # Runner Code
 # ==========================
@@ -68,10 +73,18 @@ manager = Manager.new(
                       active: true,
                       employees: [employee_1, employee_2]
                       )
-manager.give_all_raises
 
 
-p manager
+
+manager.fire_all_employees
+
+p employee_1.active
+p employee_2.active
+
+puts "=" * 50
+
+
+
 
 
 
